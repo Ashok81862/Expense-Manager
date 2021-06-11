@@ -9,7 +9,7 @@
     <div class="card-header border-bottom-0">
         <h3 class="card-title text-bold" style="font-size:1.4rem">Update Expense Category</h3>
         <div class="card-tools">
-            <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-info">
+            <a href="{{ route('admin.expenseCategories.index') }}" class="btn btn-sm btn-info">
                 <i class="fas fa-fw fa-arrow-left mr-1"></i>
                 <span>Go Back</span>
             </a>
