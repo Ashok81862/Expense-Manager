@@ -265,6 +265,24 @@ return [
             ]
 
         ],
+        [
+            'text'        => 'Incomes',
+            'url'         => '#',
+            'icon'        => 'nav-icon fas fa-fw fa-grip-vertical',
+            'submenu' => [
+                [
+                    'text' => 'IncomeCategories',
+                    'icon' => 'nav-icon fas fa-fw fa-clipboard-list',
+                    'url' => '/admin/incomeCategories',
+                ],
+                [
+                    'text' => 'Expenses',
+                    'icon' => 'nav-icon fas fa-fw fa-hand-holding-usd',
+                    'url' => '/admin/incomes',
+                ],
+            ]
+
+        ],
     ],
 
     /*
