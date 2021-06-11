@@ -276,7 +276,7 @@ return [
                     'url' => '/admin/incomeCategories',
                 ],
                 [
-                    'text' => 'Expenses',
+                    'text' => 'Incomes',
                     'icon' => 'nav-icon fas fa-fw fa-hand-holding-usd',
                     'url' => '/admin/incomes',
                 ],

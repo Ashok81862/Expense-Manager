@@ -44,13 +44,15 @@ class IncomeController extends Controller
         $request->validate([
             'name'  =>  ['required', 'max:100'],
             'income_category_id' => ['required', 'exists:income_categories,id'],
-            'amount'    =>  ['required','integer']
+            'amount'    =>  ['required','integer'],
+            'entry_date'    =>  ['required','string']
         ]);
 
         Income::create([
             'name'  => $request->name,
             'income_category_id'   => $request->income_category_id,
-            'amount'    =>  $request->amount
+            'amount'    =>  $request->amount,
+            'entry_date'    =>  $request->entry_date
         ]);
 
         return redirect()->route('admin.incomes.index')
@@ -93,13 +95,15 @@ class IncomeController extends Controller
         $request->validate([
             'name'  =>  ['required', 'max:100'],
             'income_category_id' => ['required', 'exists:income_categories,id'],
-            'amount'    =>  ['required','integer']
+            'amount'    =>  ['required','integer'],
+            'entry_date'    =>  ['required','string']
         ]);
 
         $income->update([
             'name'  => $request->name,
             'income_category_id'   => $request->income_category_id,
-            'amount'    =>  $request->amount
+            'amount'    =>  $request->amount,
+            'entry_date'    =>  $request->entry_date
         ]);
 
         return redirect()->route('admin.incomes.index')

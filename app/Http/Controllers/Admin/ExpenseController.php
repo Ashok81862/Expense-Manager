@@ -44,13 +44,15 @@ class ExpenseController extends Controller
         $request->validate([
             'name'  =>  ['required', 'max:100'],
             'expense_category_id' => ['required', 'exists:expense_categories,id'],
-            'amount'    =>  ['required','integer']
+            'amount'    =>  ['required','integer'],
+            'entry_date'    =>  ['required','string']
         ]);
 
         Expense::create([
             'name'  => $request->name,
             'expense_category_id'   => $request->expense_category_id,
-            'amount'    =>  $request->amount
+            'amount'    =>  $request->amount,
+            'entry_date'    =>  $request->entry_date
         ]);
 
         return redirect()->route('admin.expenses.index')
@@ -93,13 +95,15 @@ class ExpenseController extends Controller
         $request->validate([
             'name'  =>  ['required', 'max:100'],
             'expense_category_id' => ['required', 'exists:expense_categories,id'],
-            'amount'    =>  ['required','integer']
+            'amount'    =>  ['required','integer'],
+            'entry_date'    =>  ['required','string']
         ]);
 
         $expense->update([
             'name'  => $request->name,
             'expense_category_id'   => $request->expense_category_id,
-            'amount'    =>  $request->amount
+            'amount'    =>  $request->amount,
+            'entry_date'    =>  $request->entry_date
         ]);
 
         return redirect()->route('admin.expenses.index')

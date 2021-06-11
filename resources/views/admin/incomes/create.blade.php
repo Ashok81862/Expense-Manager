@@ -59,6 +59,19 @@
             </div>
 
             <div class="form-group">
+                <label for="entry_date">Date</label>
+                <input
+                    type="date"
+                    value="{{ old('entry_date') ?? '' }}"
+                    name="entry_date" id="entry_date"
+                    class="form-control @error('entry_date') is-invalid @enderror"
+                >
+                @error('entry_date')
+                <small class="form-text text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label for="amount">Amount</label>
                 <input
                     type="number"
