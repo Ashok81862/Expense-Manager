@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\IncomeCategory;
+use App\Http\Controllers\Controller;
 
 class IncomeCategoryController extends Controller
 {
@@ -14,7 +15,9 @@ class IncomeCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = IncomeCategory::select(['id', 'name'])->paginate(10);
+
+        return view('admin.incomes.categories.index',compact('categories'));
     }
 
     /**
@@ -24,7 +27,7 @@ class IncomeCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.incomes.categories.create');
     }
 
     /**
@@ -35,7 +38,16 @@ class IncomeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'  =>  ['required','max:100']
+        ]);
+
+        IncomeCategory::create([
+            'name'  =>  $request->name
+        ]);
+
+        return redirect()->route('admin.incomeCategories.index')
+            ->with('success', 'Income Category Created Successfully !!');
     }
 
     /**
@@ -55,9 +67,9 @@ class IncomeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(IncomeCategory $incomeCategory)
     {
-        //
+        return view('admin.incomes.categories.edit', compact('incomeCategory'));
     }
 
     /**
@@ -67,9 +79,19 @@ class IncomeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, IncomeCategory $incomeCategory)
     {
-        //
+
+        $request->validate([
+            'name'  =>  ['required','max:100']
+        ]);
+
+        $incomeCategory->update([
+            'name'  =>  $request->name
+        ]);
+
+        return redirect()->route('admin.incomeCategories.index')
+            ->with('success', 'Income Category Updated Successfully !!');
     }
 
     /**
@@ -78,8 +100,11 @@ class IncomeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(IncomeCategory $incomeCategory)
     {
-        //
+        $incomeCategory->delete();
+
+        return redirect()->route('admin.incomeCategories.index')
+        ->with('success', 'Income Category Deleted Successfully !!');
     }
 }
