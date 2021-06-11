@@ -28,9 +28,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $expenseCategory = ExpenseCategory::select(['id', 'name'])->get();
+        $expenseCategories = ExpenseCategory::select(['id', 'name'])->get();
 
-        return view('admin.expenses.create', compact('expenseCategory'));
+        return view('admin.expenses.create', compact('expenseCategories'));
     }
 
     /**
@@ -43,13 +43,13 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'name'  =>  ['required', 'max:100'],
-            'expenseCategory_id' => ['required', 'exists:expenseCategory,id'],
+            'expense_category_id' => ['required', 'exists:expense_categories,id'],
             'amount'    =>  ['required','integer']
         ]);
 
         Expense::create([
             'name'  => $request->name,
-            'expenseCategory'   => $request->expenseCategory,
+            'expense_category_id'   => $request->expense_category_id,
             'amount'    =>  $request->amount
         ]);
 
@@ -76,9 +76,9 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        $expenseCategory = ExpenseCategory::select(['id', 'name'])->get();
+        $expenseCategories = ExpenseCategory::select(['id', 'name'])->get();
 
-        return view('admin.expenses.create', compact('expenseCategory','expense'));
+        return view('admin.expenses.edit', compact('expenseCategories','expense'));
     }
 
     /**
@@ -92,13 +92,13 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'name'  =>  ['required', 'max:100'],
-            'expenseCategory_id' => ['required', 'exists:expenseCategory,id'],
+            'expense_category_id' => ['required', 'exists:expense_categories,id'],
             'amount'    =>  ['required','integer']
         ]);
 
         $expense->update([
             'name'  => $request->name,
-            'expenseCategory'   => $request->expenseCategory,
+            'expense_category_id'   => $request->expense_category_id,
             'amount'    =>  $request->amount
         ]);
 
