@@ -276,12 +276,17 @@ return [
                     'url' => '/admin/incomeCategories',
                 ],
                 [
-                    'text' => 'Expenses',
+                    'text' => 'Incomes',
                     'icon' => 'nav-icon fas fa-fw fa-hand-holding-usd',
                     'url' => '/admin/incomes',
                 ],
             ]
 
+        ],
+        [
+            'text'        => 'Reports',
+            'url'         => '/admin/reports',
+            'icon'        => 'nav-icon fas fa-fw fa-info-circle',
         ],
     ],
 

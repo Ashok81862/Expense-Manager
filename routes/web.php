@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,9 @@ Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(fu
     Route::resource('incomeCategories', \App\Http\Controllers\Admin\IncomeCategoryController::class);
 
     Route::resource('incomes', \App\Http\Controllers\Admin\IncomeController::class);
+
+
+    Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
+
 });
