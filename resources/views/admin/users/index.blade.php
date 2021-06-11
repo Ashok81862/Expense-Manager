@@ -3,6 +3,8 @@
 @section('title', 'All Users')
 
 @section('content')
+<x-alert />
+<x-delete />
 
 <div class="card">
     <div class="card-header border-bottom-0">

@@ -2,7 +2,18 @@
 
 @section('title', 'Create Users')
 
+@section('plugins.Select2', true)
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('#role').select2();
+    });
+</script>
+@endpush
+
 @section('content')
+<x-alert />
 
 <div class="card">
     <div class="card-header border-bottom-0">
