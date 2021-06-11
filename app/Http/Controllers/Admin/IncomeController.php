@@ -78,7 +78,7 @@ class IncomeController extends Controller
     {
         $incomeCategories = IncomeCategory::select(['id', 'name'])->get();
 
-        return view('admin.expenses.edit', compact('incomeCategories','income'));
+        return view('admin.incomes.edit', compact('incomeCategories','income'));
     }
 
     /**
