@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Income;
 use Illuminate\Http\Request;
+use App\Models\IncomeCategory;
+use App\Http\Controllers\Controller;
 
 class IncomeController extends Controller
 {
@@ -14,7 +16,9 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        //
+        $incomes = Income::with(['incomeCategory'])->paginate(10);
+
+        return view('admin.incomes.index', compact('incomes'));
     }
 
     /**
@@ -24,7 +28,9 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        $incomeCategories = IncomeCategory::select(['id', 'name'])->get();
+
+        return view('admin.incomes.create', compact('incomeCategories'));
     }
 
     /**
@@ -35,7 +41,20 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'  =>  ['required', 'max:100'],
+            'income_category_id' => ['required', 'exists:income_categories,id'],
+            'amount'    =>  ['required','integer']
+        ]);
+
+        Income::create([
+            'name'  => $request->name,
+            'income_category_id'   => $request->income_category_id,
+            'amount'    =>  $request->amount
+        ]);
+
+        return redirect()->route('admin.incomes.index')
+            ->with('success', 'Income Created Successfully !!');
     }
 
     /**
@@ -44,7 +63,7 @@ class IncomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Income $income)
     {
         //
     }
@@ -55,9 +74,11 @@ class IncomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Income $income)
     {
-        //
+        $incomeCategories = IncomeCategory::select(['id', 'name'])->get();
+
+        return view('admin.expenses.edit', compact('incomeCategories','income'));
     }
 
     /**
@@ -67,9 +88,22 @@ class IncomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Income $income)
     {
-        //
+        $request->validate([
+            'name'  =>  ['required', 'max:100'],
+            'income_category_id' => ['required', 'exists:income_categories,id'],
+            'amount'    =>  ['required','integer']
+        ]);
+
+        $income->update([
+            'name'  => $request->name,
+            'income_category_id'   => $request->income_category_id,
+            'amount'    =>  $request->amount
+        ]);
+
+        return redirect()->route('admin.incomes.index')
+            ->with('success', 'Income Created Successfully !!');
     }
 
     /**
@@ -78,8 +112,11 @@ class IncomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Income $income)
     {
-        //
+        $income->delete();
+
+        return redirect()->route('admin.incomes.index')
+            ->with('success', 'Income Deleted Successfully !!');
     }
 }
