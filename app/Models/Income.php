@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Income extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function incomeCategory()
+    {
+        return $this->belongsTo(IncomeCategory::class);
+    }
 }
