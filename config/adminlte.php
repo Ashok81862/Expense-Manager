@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-white-primary elevation-2',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-2',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-white',
     'classes_topnav_nav' => 'navbar-expand',
@@ -255,7 +255,7 @@ return [
                 [
                     'text' => 'ExpenseCategories',
                     'icon' => 'nav-icon fas fa-fw fa-clipboard-list',
-                    'url' => '/admin/expense-categories',
+                    'url' => '/admin/expenseCategories',
                 ],
                 [
                     'text' => 'Expenses',

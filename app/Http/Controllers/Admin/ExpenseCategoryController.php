@@ -16,7 +16,7 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $categories = ExpenseCategory::select(['id', 'name'])->get();
+        $categories = ExpenseCategory::select(['id', 'name'])->paginate(10);
 
         return view('admin.expenses.categories.index',compact('categories'));
     }
@@ -47,7 +47,7 @@ class ExpenseCategoryController extends Controller
             'name'  =>  $request->name
         ]);
 
-        return redirect()->route('admin.expenses.categories.index')
+        return redirect()->route('admin.expenseCategories.index')
             ->with('success', 'Expense Category Created Successfully !!');
 
     }
@@ -91,7 +91,7 @@ class ExpenseCategoryController extends Controller
             'name'  =>  $request->name
         ]);
 
-        return redirect()->route('admin.expenses.categories.index')
+        return redirect()->route('admin.expenseCategories.index')
             ->with('success', 'Expense Category Updated Successfully !!');
     }
 
@@ -105,7 +105,7 @@ class ExpenseCategoryController extends Controller
     {
         $expenseCategory->delete();
 
-        return redirect()->route('admin.expenses.categories.index')
+        return redirect()->route('admin.expenseCategories.index')
         ->with('success', 'Expense Category Deleted Successfully !!');
     }
 }
