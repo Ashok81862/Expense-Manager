@@ -29,4 +29,6 @@ Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(fu
     Route::resource('expenses', \App\Http\Controllers\Admin\ExpenseController::class);
 
     Route::resource('incomeCategories', \App\Http\Controllers\Admin\IncomeCategoryController::class);
+
+    Route::resource('incomes', \App\Http\Controllers\Admin\IncomeController::class);
 });
