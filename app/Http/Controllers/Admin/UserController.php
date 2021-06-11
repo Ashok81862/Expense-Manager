@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         $roles = $this->roles;
 
-        return view('admin.users.create', compact('roles','user'));
+        return view('admin.users.edit', compact('roles','user'));
     }
 
     /**
