@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Expense;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
+use App\Http\Controllers\Controller;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +16,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $expenses = Expense::with(['expenseCategory'])->paginate(10);
+
+        return view('admin.expenses.index', compact('expenses'));
     }
 
     /**
@@ -24,7 +28,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        $expenseCategory = ExpenseCategory::select(['id', 'name'])->get();
+
+        return view('admin.expenses.create', compact('expenseCategory'));
     }
 
     /**
@@ -35,7 +41,20 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'  =>  ['required', 'max:100'],
+            'expenseCategory_id' => ['required', 'exists:expenseCategory,id'],
+            'amount'    =>  ['required','integer']
+        ]);
+
+        Expense::create([
+            'name'  => $request->name,
+            'expenseCategory'   => $request->expenseCategory,
+            'amount'    =>  $request->amount
+        ]);
+
+        return redirect()->route('admin.expenses.index')
+            ->with('success', 'Expense Created Successfully !!');
     }
 
     /**
@@ -44,7 +63,7 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Expense $expense)
     {
         //
     }
@@ -55,9 +74,11 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
-        //
+        $expenseCategory = ExpenseCategory::select(['id', 'name'])->get();
+
+        return view('admin.expenses.create', compact('expenseCategory','expense'));
     }
 
     /**
@@ -67,9 +88,22 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Expense $expense)
     {
-        //
+        $request->validate([
+            'name'  =>  ['required', 'max:100'],
+            'expenseCategory_id' => ['required', 'exists:expenseCategory,id'],
+            'amount'    =>  ['required','integer']
+        ]);
+
+        $expense->update([
+            'name'  => $request->name,
+            'expenseCategory'   => $request->expenseCategory,
+            'amount'    =>  $request->amount
+        ]);
+
+        return redirect()->route('admin.expenses.index')
+            ->with('success', 'Expense Updated Successfully !!');
     }
 
     /**
@@ -78,8 +112,11 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+
+        return redirect()->route('admin.expenses.index')
+            ->with('success', 'Expense Deleted Successfully !!');
     }
 }
