@@ -31,4 +31,6 @@ Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(fu
     Route::resource('incomeCategories', \App\Http\Controllers\Admin\IncomeCategoryController::class);
 
     Route::resource('incomes', \App\Http\Controllers\Admin\IncomeController::class);
+
+    Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'report']);
 });

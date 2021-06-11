@@ -283,6 +283,11 @@ return [
             ]
 
         ],
+        [
+            'text'        => 'Reports',
+            'url'         => '/admin/reports',
+            'icon'        => 'nav-icon fas fa-fw fa-info-circle',
+        ],
     ],
 
     /*
