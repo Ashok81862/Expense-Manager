@@ -247,6 +247,24 @@ return [
             'url'         => '/admin/users',
             'icon'        => 'nav-icon fas fa-fw fa-user',
         ],
+        [
+            'text'        => 'Expenses',
+            'url'         => '#',
+            'icon'        => 'nav-icon fas fa-fw fa-grip-vertical',
+            'submenu' => [
+                [
+                    'text' => 'ExpenseCategories',
+                    'icon' => 'nav-icon fas fa-fw fa-clipboard-list',
+                    'url' => '/admin/expense-categories',
+                ],
+                [
+                    'text' => 'Expenses',
+                    'icon' => 'nav-icon fas fa-fw fa-dollar-sign',
+                    'url' => '/admin/expenses',
+                ],
+            ]
+
+        ],
     ],
 
     /*
