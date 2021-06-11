@@ -127,7 +127,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-white-primary elevation-2',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-2',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-white',
     'classes_topnav_nav' => 'navbar-expand',
@@ -246,6 +246,24 @@ return [
             'text'        => 'Users',
             'url'         => '/admin/users',
             'icon'        => 'nav-icon fas fa-fw fa-user',
+        ],
+        [
+            'text'        => 'Expenses',
+            'url'         => '#',
+            'icon'        => 'nav-icon fas fa-fw fa-grip-vertical',
+            'submenu' => [
+                [
+                    'text' => 'ExpenseCategories',
+                    'icon' => 'nav-icon fas fa-fw fa-clipboard-list',
+                    'url' => '/admin/expenseCategories',
+                ],
+                [
+                    'text' => 'Expenses',
+                    'icon' => 'nav-icon fas fa-fw fa-dollar-sign',
+                    'url' => '/admin/expenses',
+                ],
+            ]
+
         ],
     ],
 
