@@ -289,6 +289,11 @@ return [
             'url'         => '/admin/reports',
             'icon'        => 'nav-icon fas fa-fw fa-info-circle',
         ],
+        [
+            'text' => 'Change Password',
+            'url'  => '/admin/password',
+            'icon' => 'nav-icon fas fa-fw fa-key',
+        ],
     ],
 
     /*

@@ -37,4 +37,6 @@ Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(fu
     Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
 
+    Route::get('password', [\App\Http\Controllers\Admin\AdminController::class, 'password']);
+
 });
