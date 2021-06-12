@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeCategoryController extends Controller
 {
@@ -15,7 +16,7 @@ class IncomeCategoryController extends Controller
      */
     public function index()
     {
-        $categories = IncomeCategory::select(['id', 'name'])->paginate(10);
+        $categories = IncomeCategory::paginate(10);
 
         return view('admin.incomes.categories.index',compact('categories'));
     }
@@ -43,7 +44,8 @@ class IncomeCategoryController extends Controller
         ]);
 
         IncomeCategory::create([
-            'name'  =>  $request->name
+            'name'  =>  $request->name,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.incomeCategories.index')
@@ -87,7 +89,8 @@ class IncomeCategoryController extends Controller
         ]);
 
         $incomeCategory->update([
-            'name'  =>  $request->name
+            'name'  =>  $request->name,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.incomeCategories.index')

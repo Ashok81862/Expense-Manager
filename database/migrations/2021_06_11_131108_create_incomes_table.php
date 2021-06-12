@@ -19,6 +19,7 @@ class CreateIncomesTable extends Migration
             $table->string('entry_date');
             $table->foreignId('income_category_id');
             $table->integer('amount');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/home',[\App\Http\Controllers\SiteController::class, 'home'])->name('home')->middleware('auth');
 
-Route::middleware(['auth', 'admin','throttle:60,60'])->prefix('/admin')->name('admin.')->group(function(){
+Route::middleware(['auth', 'admin'])->prefix('/admin')->name('admin.')->group(function(){
     Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index']);
 
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);

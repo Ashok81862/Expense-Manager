@@ -21,10 +21,12 @@ class ExpenseCategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->word(mt_rand(15,20), true);
+        $name = $this->faker->word(mt_rand(1,3), true);
+        $user_id    = mt_rand(1,3);
 
         return [
             'name'  =>  $name,
+            'user_id'   => $user_id
         ];
     }
 }

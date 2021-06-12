@@ -6,6 +6,7 @@ use App\Models\Expense;
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
@@ -52,7 +53,8 @@ class ExpenseController extends Controller
             'name'  => $request->name,
             'expense_category_id'   => $request->expense_category_id,
             'amount'    =>  $request->amount,
-            'entry_date'    =>  $request->entry_date
+            'entry_date'    =>  $request->entry_date,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.expenses.index')
@@ -103,7 +105,8 @@ class ExpenseController extends Controller
             'name'  => $request->name,
             'expense_category_id'   => $request->expense_category_id,
             'amount'    =>  $request->amount,
-            'entry_date'    =>  $request->entry_date
+            'entry_date'    =>  $request->entry_date,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.expenses.index')
