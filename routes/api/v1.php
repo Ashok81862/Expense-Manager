@@ -23,6 +23,12 @@ Route::prefix('v1')->group(function () {
         Route::put('/expenseCategories/{expenseCategory}', [ExpenseCategoryController::class, 'update']);
         Route::delete('/expenseCategories/{expenseCategory}', [ExpenseCategoryController::class, 'destroy']);
 
+        Route::get('expenses',[\App\Http\Controllers\API\V1\ExpenseController::class,'index']);
+        Route::post('expense',[\App\Http\Controllers\API\V1\ExpenseController::class,'store']);
+        Route::get('/expenses/{expense}',[\App\Http\Controllers\API\V1\ExpenseController::class,'show']);
+        Route::put('/expenses/{expense}',[\App\Http\Controllers\API\V1\ExpenseController::class,'update']);
+        Route::delete('/expenses/{expense}',[\App\Http\Controllers\API\V1\ExpenseController::class,'destroy']);
+
 
     });
 });
