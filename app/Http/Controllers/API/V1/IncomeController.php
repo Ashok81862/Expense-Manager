@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Expense;
+use App\Models\Income;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ExpenseController extends Controller
+class IncomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::all();
+        $incomes = Income::all();
 
-        return response()->json($expenses);
+        return response()->json($incomes);
     }
 
     /**
@@ -32,18 +32,18 @@ class ExpenseController extends Controller
             'name'  =>  'required',
             'amount'=>  'required|integer',
             'entry_date' => 'required|string',
-            'expense_category_id'=> 'required|exists:expense_categories,id',
+            'income_category_id'=> 'required|exists:income_categories,id',
         ]);
 
-        $expense = Expense::create([
+        $income = Income::create([
             'name'  =>  $request->name,
             'amount'  =>   $request->amount,
             'entry_date' => $request->entry_date,
             'user_id'   =>  auth()->id(),
-            'expense_category_id'   =>  $request->expense_category_id,
+            'income_category_id'   =>  $request->income_category_id,
         ]);
 
-        return response()->json($expense);
+        return response()->json($income);
     }
 
     /**
@@ -52,14 +52,14 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Expense $expense)
+    public function show(Income $income)
     {
         return response()->json([
-            'id' => $expense->id,
-            'amount'    =>  $expense->amount,
-            'entry_date'    =>  $expense->entry_date,
-            'name' => $expense->name,
-            'user_id'   =>  $expense->user_id
+            'id' => $income->id,
+            'name' => $income->name,
+            'amount'    =>  $income->amount,
+            'entry_date'    =>  $income->entry_date,
+            'user_id'   =>  $income->user_id
         ]);
     }
 
@@ -70,24 +70,25 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expense $expense)
+    public function update(Request $request, Income $income)
     {
+        dd($income->name);
         $request->validate([
             'name'  =>  'required',
             'amount'=>  'required|integer',
             'entry_date' => 'required|string',
-            'expense_category_id'=> 'required|exists:expense_categories,id',
+            'income_category_id'=> 'required|exists:income_categories,id',
         ]);
 
-        $expense->update([
-            'name'  =>  $request->name,
-            'amount'  =>   $request->amount,
-            'entry_date' => $request->entry_date,
+        $income->update([
+            'name'  =>  $request->name ?? $income->name,
+            'amount'  =>   $request->amount ?? $income->amount,
+            'entry_date' => $request->entry_date ?? $income->entry_date,
             'user_id'   =>  auth()->id(),
-            'expense_category_id'   =>  $request->expense_category_id,
+            'income_category_id'   =>  $request->income_category_id ?? $income->income_category_id,
         ]);
 
-        return response()->json($expense);
+        return response()->json($income);
     }
 
     /**
@@ -96,9 +97,9 @@ class ExpenseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Expense $expense)
+    public function destroy(Income $income)
     {
-        $expense->delete();
+        $income->delete();
 
         return response()->noContent();
     }

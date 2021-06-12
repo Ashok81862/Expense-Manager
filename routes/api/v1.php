@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\Api\V1\IncomeController;
 use App\Http\Controllers\Api\V1\IncomeCategoryController;
 use App\Http\Controllers\API\V1\ExpenseCategoryController;
 
@@ -38,6 +39,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/incomeCategories/{incomeCategory}', [IncomeCategoryController::class, 'show']);
         Route::put('/incomeCategories/{incomeCategory}', [IncomeCategoryController::class, 'update']);
         Route::delete('/incomeCategories/{incomeCategory}', [IncomeCategoryController::class, 'destroy']);
+
+        //Income Routes
+        Route::get('incomes',[\App\Http\Controllers\API\V1\IncomeController::class,'index']);
+        Route::post('incomes',[\App\Http\Controllers\API\V1\IncomeController::class,'store']);
+        Route::get('/incomes/{income}',[\App\Http\Controllers\API\V1\IncomeController::class,'show']);
+        Route::put('/incomes/{income}',[\App\Http\Controllers\API\V1\IncomeController::class,'update']);
+        Route::delete('/incomes/{income}',[\App\Http\Controllers\API\V1\IncomeController::class,'destroy']);
 
 
     });
