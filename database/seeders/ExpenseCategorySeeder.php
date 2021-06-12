@@ -2,19 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class ExpenseCategorySeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
-        $this->call(ExpenseCategorySeeder::class);
+        \App\Models\ExpenseCategory::factory(20)->create();
     }
 }
