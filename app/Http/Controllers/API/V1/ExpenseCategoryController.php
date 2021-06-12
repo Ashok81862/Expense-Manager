@@ -72,7 +72,7 @@ class ExpenseCategoryController extends Controller
         ]);
 
         $expenseCategory->update([
-            'name'  =>  $request->name,
+            'name'  =>  $request->name ?? $expenseCategory->name,
             'user_id'   =>  auth()->id(),
         ]);
 

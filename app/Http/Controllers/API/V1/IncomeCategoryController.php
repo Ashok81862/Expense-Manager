@@ -69,7 +69,7 @@ class IncomeCategoryController extends Controller
         ]);
 
         $incomeCategory->update([
-            'name'  =>  $request->name,
+            'name'  =>  $request->name ?? $incomeCategory->name,
             'user_id'   =>  auth()->id(),
         ]);
 
