@@ -21,7 +21,7 @@ class ExpenseCategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->word(mt_rand(5,10), true);
+        $name = $this->faker->word(mt_rand(15,20), true);
 
         return [
             'name'  =>  $name,

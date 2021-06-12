@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Expense;
 use App\Models\ExpenseCategory;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(ExpenseCategorySeeder::class);
+        $this->call(ExpenseSeeder::class);
     }
 }
