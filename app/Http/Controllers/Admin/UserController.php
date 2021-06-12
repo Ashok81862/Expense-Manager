@@ -10,6 +10,12 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     protected $roles = ['Admin', 'User'];
+
+    public function __construct()
+    {
+        $this->authorize('Admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
