@@ -43,6 +43,7 @@
                 <thead class="thead-dark">
                     <th>S.N</th>
                     <th>Date</th>
+                    <th>User Name</th>
                     <th>Expense Name</th>
                     <th>Category</th>
                     <th>Amount</th>
@@ -52,6 +53,7 @@
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td>{{ $item['date'] }}</td>
+                            <td>{{ $item['user_id'] }}</td>
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['expense_category_id'] }}</td>
                             <td>Rs.{{ $item['amount'] }}</td>
@@ -68,6 +70,7 @@
                 <thead class="thead-dark">
                     <th>S.N</th>
                     <th>Date</th>
+                    <th>User Name</th>
                     <th>Income Name</th>
                     <th>Category</th>
                     <th>Amount</th>
@@ -77,13 +80,14 @@
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td>{{ $item['date'] }}</td>
+                            <td>{{ $item['user_id'] }}</td>
                             <td>{{ $item['name'] }}</td>
                             <td>{{ $item['income_category_id'] }}</td>
                             <td>Rs.{{ $item['amount'] }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td style="border-top:2px solid #444;text-align:right;font-weight:bold" colspan="5">Total Incomes:Rs.  {{$inc_amount}}</td>
+                        <td style="border-top:2px solid #444;text-align:right;font-weight:bold" colspan="6">Total Incomes:Rs.  {{$inc_amount}}</td>
 
                     </tr>
                 </tbody>

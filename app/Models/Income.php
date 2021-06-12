@@ -25,7 +25,9 @@ class Income extends Model
     protected static function booted()
     {
         static::addGlobalScope('user', function (Builder $builder) {
-            $builder->where('user_id', auth()->id() ?? NULL);
+            if(auth()->user()?->role != 'Admin'){
+                $builder->where('user_id', auth()->id() ?? NULL);
+            }
         });
     }
 }

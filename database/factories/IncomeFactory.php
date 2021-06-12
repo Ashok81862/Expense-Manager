@@ -25,6 +25,7 @@ class IncomeFactory extends Factory
         $amount = mt_rand(100, 100000);
         $entry_date = $this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now')->format("Y-m-d");
         $income_category_id = mt_rand(1,20);
+        $user_id    = mt_rand(1,3);
 
 
 
@@ -33,6 +34,7 @@ class IncomeFactory extends Factory
             'amount'    =>  $amount,
             'entry_date'    =>  $entry_date,
             'income_category_id'   =>  $income_category_id,
+            'user_id'   =>  $user_id
         ];
     }
 }
