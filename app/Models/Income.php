@@ -17,6 +17,11 @@ class Income extends Model
         return $this->belongsTo(IncomeCategory::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function booted()
     {
         static::addGlobalScope('user', function (Builder $builder) {

@@ -25,6 +25,7 @@
                     <th>Category</th>
                     <th>Amount</th>
                     <th>Date</th>
+                    <th>Added By</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                     <td>{{ $income->incomeCategory->name}}</td>
                     <td>{{ $income->amount }}</td>
                     <td>{{ $income->entry_date }}</td>
+                    <td>{{ $income->user->name }}</td>
                     <td>
                         <!-- Edit -->
                         <a href="{{ route('admin.incomes.edit', $income->id) }}" class="btn btn-primary btn-sm">

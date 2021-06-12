@@ -12,6 +12,11 @@ class IncomeCategory extends Model
 
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function booted()
     {
         static::addGlobalScope('user', function (Builder $builder) {

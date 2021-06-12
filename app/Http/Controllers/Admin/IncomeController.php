@@ -6,6 +6,7 @@ use App\Models\Income;
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeController extends Controller
 {
@@ -52,7 +53,8 @@ class IncomeController extends Controller
             'name'  => $request->name,
             'income_category_id'   => $request->income_category_id,
             'amount'    =>  $request->amount,
-            'entry_date'    =>  $request->entry_date
+            'entry_date'    =>  $request->entry_date,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.incomes.index')
@@ -103,7 +105,8 @@ class IncomeController extends Controller
             'name'  => $request->name,
             'income_category_id'   => $request->income_category_id,
             'amount'    =>  $request->amount,
-            'entry_date'    =>  $request->entry_date
+            'entry_date'    =>  $request->entry_date,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.incomes.index')

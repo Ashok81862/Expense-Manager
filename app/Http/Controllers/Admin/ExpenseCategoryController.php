@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\ExpenseCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class ExpenseCategoryController extends Controller
 {
@@ -16,7 +18,7 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $categories = ExpenseCategory::select(['id', 'name'])->paginate(10);
+        $categories = ExpenseCategory::paginate(10);
 
         return view('admin.expenses.categories.index',compact('categories'));
     }
@@ -44,7 +46,8 @@ class ExpenseCategoryController extends Controller
         ]);
 
         ExpenseCategory::create([
-            'name'  =>  $request->name
+            'name'  =>  $request->name,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.expenseCategories.index')
@@ -88,7 +91,8 @@ class ExpenseCategoryController extends Controller
         ]);
 
         $expenseCategory->update([
-            'name'  =>  $request->name
+            'name'  =>  $request->name,
+            'user_id'   =>  Auth::user()->id,
         ]);
 
         return redirect()->route('admin.expenseCategories.index')

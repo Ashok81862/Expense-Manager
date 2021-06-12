@@ -17,6 +17,11 @@ class Expense extends Model
         return $this->belongsTo(ExpenseCategory::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected static function booted()
     {
         static::addGlobalScope('user', function (Builder $builder) {
