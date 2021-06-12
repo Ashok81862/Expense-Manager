@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\AuthController;
-
+use App\Http\Controllers\API\V1\ExpenseCategoryController;
 
 Route::prefix('v1')->group(function () {
 
@@ -16,6 +16,13 @@ Route::prefix('v1')->group(function () {
         Route::post('/auth/check', [AuthController::class, 'checkToken']);
 
         Route::get('user',[AuthController::class, 'user']);
+
+        Route::get('expenseCategories', [ExpenseCategoryController::class, 'index']);
+        Route::post('expenseCategory', [ExpenseCategoryController::class, 'store']);
+        Route::get('/expenseCategories/{expenseCategory}', [ExpenseCategoryController::class, 'show']);
+        Route::put('/expenseCategories/{expenseCategory}', [ExpenseCategoryController::class, 'update']);
+        Route::delete('/expenseCategories/{expenseCategory}', [ExpenseCategoryController::class, 'destroy']);
+
 
     });
 });
