@@ -83,7 +83,7 @@
                         </tr>
                     @endforeach
                     <tr>
-                        <td style="border-top:2px solid #444;text-align:right;font-weight:bold" colspan="5">Total Expenses:Rs.  {{$inc_amount}}</td>
+                        <td style="border-top:2px solid #444;text-align:right;font-weight:bold" colspan="5">Total Incomes:Rs.  {{$inc_amount}}</td>
 
                     </tr>
                 </tbody>
