@@ -72,12 +72,11 @@ class IncomeController extends Controller
      */
     public function update(Request $request, Income $income)
     {
-        dd($income->name);
         $request->validate([
-            'name'  =>  'required',
-            'amount'=>  'required|integer',
-            'entry_date' => 'required|string',
-            'income_category_id'=> 'required|exists:income_categories,id',
+            'name'  =>  'nullable|string',
+            'amount'=>  'nullable|integer',
+            'entry_date' => 'nullable|string',
+            'income_category_id'=> 'nullable|exists:income_categories,id',
         ]);
 
         $income->update([
