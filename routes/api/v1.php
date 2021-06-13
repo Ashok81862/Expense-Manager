@@ -47,6 +47,6 @@ Route::prefix('v1')->group(function () {
         Route::put('/incomes/{income}',[\App\Http\Controllers\API\V1\IncomeController::class,'update']);
         Route::delete('/incomes/{income}',[\App\Http\Controllers\API\V1\IncomeController::class,'destroy']);
 
-
+        Route::get('reports/generate', [\App\Http\Controllers\API\V1\ReportController::class,'generateReport'])->name('reports.generate');
     });
 });
