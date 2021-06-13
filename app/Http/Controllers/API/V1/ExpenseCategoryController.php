@@ -68,7 +68,7 @@ class ExpenseCategoryController extends Controller
     public function update(Request $request, ExpenseCategory $expenseCategory)
     {
         $request->validate([
-            'name'  =>  'required',
+            'name'  =>  'nullable|string',
         ]);
 
         $expenseCategory->update([

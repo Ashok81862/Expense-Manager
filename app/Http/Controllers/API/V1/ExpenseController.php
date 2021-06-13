@@ -73,18 +73,18 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $request->validate([
-            'name'  =>  'required',
-            'amount'=>  'required|integer',
-            'entry_date' => 'required|string',
-            'expense_category_id'=> 'required|exists:expense_categories,id',
+            'name'  =>  'nullable|string',
+            'amount'=>  'nullable|integer',
+            'entry_date' => 'nullable|string',
+            'expense_category_id'=> 'nullable|exists:expense_categories,id',
         ]);
 
         $expense->update([
-            'name'  =>  $request->name,
-            'amount'  =>   $request->amount,
-            'entry_date' => $request->entry_date,
+            'name'  =>  $request->name ?? $expense->name,
+            'amount'  =>   $request->amount ?? $expense->amount,
+            'entry_date' => $request->entry_date ?? $expense->entry_date,
             'user_id'   =>  auth()->id(),
-            'expense_category_id'   =>  $request->expense_category_id,
+            'expense_category_id'   =>  $request->expense_category_id ?? $expense->expense_category_id,
         ]);
 
         return response()->json($expense);

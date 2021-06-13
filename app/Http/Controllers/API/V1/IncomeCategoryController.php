@@ -65,7 +65,7 @@ class IncomeCategoryController extends Controller
     public function update(Request $request, IncomeCategory $incomeCategory)
     {
         $request->validate([
-            'name'  =>  'required',
+            'name'  =>  'nullable|string',
         ]);
 
         $incomeCategory->update([
