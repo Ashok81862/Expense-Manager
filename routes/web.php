@@ -14,9 +14,9 @@ use App\Http\Controllers\Admin\ReportController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Redirect to Admin
+Route::redirect('/', '/admin')->middleware('auth');
+Route::redirect('/home', '/admin')->middleware('auth');
 
 Route::get('/home',[\App\Http\Controllers\SiteController::class, 'home'])->name('home')->middleware('auth');
 
